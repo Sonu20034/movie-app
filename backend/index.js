@@ -2,22 +2,20 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 require('dotenv').config()
-const authRoutes=require('./routes/auth')
-const protectedRoutes = require('./routes/protectedRoute')  
-const favoritesRoutes = require("./routes/favorites")
 
+const authRoutes = require('./routes/auth')
+const protectedRoutes = require('./routes/protectedRoute')
+const favoritesRoutes = require('./routes/favorites')
 
-app.use(cors({
+const app = express()             // 👈 PEHLE app banao
+const PORT = process.env.PORT || 5000
+
+app.use(cors({                    // 👈 PHIR use karo
     origin: "*",
     credentials: true
 }))
-const PORT = process.env.PORT
 
-app.use(cors())
 app.use(express.json())
-
-
-console.log("==>",process.env.MONGO_URI)
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
@@ -28,21 +26,15 @@ mongoose.connect(process.env.MONGO_URI)
   console.log(error.message)
 })
 
-
-
-
-
-app.get('/',(req,res)=>{
-  res.send("hello  server kam kr rha h ")
-    
+app.get('/', (req, res) => {
+  res.send("hello server kam kr rha h")
 })
 
-
 app.use('/api/auth', authRoutes)
-app.use('/api', protectedRoutes)                             
-app.use('/api/favorites', favoritesRoutes) 
+app.use('/api', protectedRoutes)
+app.use('/api/favorites', favoritesRoutes)
 
-app.listen(PORT,()=>{
-    console.log(`server ${PORT} pe chal rha h`);
+app.listen(PORT, () => {
+    console.log(`server ${PORT} pe chal rha h`)
     console.log(`Open: http://localhost:${PORT}`)
 })
