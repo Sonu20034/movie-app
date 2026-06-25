@@ -7,7 +7,10 @@ const protectedRoutes = require('./routes/protectedRoute')
 const favoritesRoutes = require("./routes/favorites")
 
 
-const app  = express()
+app.use(cors({
+    origin: "*",
+    credentials: true
+}))
 const PORT = process.env.PORT
 
 app.use(cors())
