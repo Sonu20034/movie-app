@@ -9,7 +9,8 @@
     "backend": {
       "root": "backend",
       "routePrefix": "/_backend",
-      "entrypoint": "index.js"
+      "entrypoint": "index.js",
+      "buildCommand": "echo 'No build step required for backend'"
     }
   }
 }
