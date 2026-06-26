@@ -5,7 +5,7 @@ import { AuthContext } from "./AuthContext"
 
 export const FavoritesContext = createContext()
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
+
 
 export function FavoritesProvider({ children }) {
     const [favorites, setFavorites] = useState([])
@@ -23,7 +23,7 @@ export function FavoritesProvider({ children }) {
 
  async function fetchFavorites() {
         try {
-            const response = await axios.get(`${API_BASE_URL}/api/favorites`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/favorites`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -39,7 +39,7 @@ export function FavoritesProvider({ children }) {
   async function addFavorite(movie) {
         try {
             const response = await axios.post(
-                `${API_BASE_URL}/api/favorites`,
+                `${process.env.REACT_APP_API_BASE_URL}/api/favorites`,
                 {
                     movieId: movie.id,
                     title: movie.title,
@@ -63,7 +63,7 @@ export function FavoritesProvider({ children }) {
    async function removeFavorite(movieId) {
         try {
             await axios.delete(
-                `${API_BASE_URL}/api/favorites/${movieId}`,
+                `${process.env.REACT_APP_API_BASE_URL}/api/favorites/${movieId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
