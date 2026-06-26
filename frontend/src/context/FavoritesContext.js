@@ -5,9 +5,9 @@ import { AuthContext } from "./AuthContext"
 
 export const FavoritesContext = createContext()
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
 export function FavoritesProvider({ children }) {
-  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
     const [favorites, setFavorites] = useState([])
 
 
