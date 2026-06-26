@@ -13,6 +13,7 @@ function Signup() {
 
   const { login } = useContext(AuthContext)
   const navigate = useNavigate()
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -20,13 +21,13 @@ function Signup() {
     setLoading(true)
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/signup", {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/signup`, {
         username: username,
         email: email,
         password: password
       })
 
-      const loginResponse = await axios.post("http://localhost:5000/api/auth/login", {
+      const loginResponse = await axios.post(`${API_BASE_URL}/api/auth/login`, {
         email: email,
         password: password
       })
