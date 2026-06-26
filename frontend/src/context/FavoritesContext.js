@@ -7,7 +7,7 @@ export const FavoritesContext = createContext()
 
 
 export function FavoritesProvider({ children }) {
-
+  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL
     const [favorites, setFavorites] = useState([])
 
 
